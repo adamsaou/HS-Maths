@@ -1,0 +1,28 @@
+.nmao-badge {
+  display: inline-block;
+  padding: 0.25em 0.7em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.nmao-study {
+  color: #155e9e;
+  background-color: #e3f2fd;
+}
+
+.nmao-test {
+  color: #9a4d00;
+  background-color: #fff0d6;
+}
+
+.nmao-correction {
+  color: #a32222;
+  background-color: #fde4e4;
+}
+
+.nmao-success {
+  color: #176b3a;
+  background-color: #e3f5e9;
+}

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pure Mathematics 1 &amp; 2 — Lesson Book</title>
+<style>
+  :root{ --ink:#1a1a2e; --accent:#1f3a93; --accent2:#7a1f3a; --muted:#6b7280; --line:#d7dce5; --soft:#f4f6fa; }
+  *{ box-sizing:border-box; }
+  html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:"Georgia","Cambria","Times New Roman",serif; color:var(--ink); line-height:1.55; margin:0; background:#e9edf3; }
+  .page{ background:#fff; max-width:820px; margin:24px auto; padding:50px 58px; box-shadow:0 2px 14px rgba(0,0,0,.12); }
+  h1,h2,h3,h4{ font-family:"Georgia","Times New Roman",serif; }
+  .m{ font-style:italic; font-family:"Cambria Math","Georgia",serif; white-space:nowrap; }
+  sup,sub{ font-style:normal; font-size:.72em; }
+  .frac{ display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; margin:0 .14em; line-height:1.12; }
+  .frac .n{ border-bottom:1.3px solid currentColor; padding:0 .35em; }
+  .frac .d{ padding:0 .35em; }
+  .sqrt{ white-space:nowrap; }
+  .sqrt::before{ content:"\221A"; }
+  .sqrt > span{ border-top:1.2px solid currentColor; padding:0 .12em; margin-left:-.06em; }
+  /* cover + toc */
+  .cover{ text-align:center; padding:60px 58px; }
+  .crest{ width:66px;height:66px;border:2px solid var(--accent);border-radius:50%; display:flex;align-items:center;justify-content:center;margin:0 auto 20px; font-size:30px;color:var(--accent);font-weight:700; }
+  .cover .sub{ letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-size:13px; }
+  .cover h1{ font-size:34px; margin:14px 0 6px; }
+  .cover .rule{ width:120px;height:3px;background:var(--accent);margin:18px auto; }
+  .toc{ text-align:left; margin-top:30px; font-size:14px; column-count:2; column-gap:30px; }
+  .toc div{ padding:3px 0; border-bottom:1px dotted var(--line); }
+  .howto{ border:1px solid var(--line); background:var(--soft); border-radius:8px; padding:14px 18px; font-size:13.5px; margin-top:26px; text-align:left; }
+  .howto h3{ margin:0 0 6px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); }
+  /* part divider */
+  .partbar{ text-align:center; page-break-before:always; padding-top:150px; }
+  .partbar .lbl{ letter-spacing:4px; text-transform:uppercase; color:var(--muted); font-size:14px; }
+  .partbar h1{ font-size:40px; margin:8px 0; }
+  .partbar .ln{ width:90px;height:3px;margin:14px auto; }
+  /* lesson */
+  .lesson{ page-break-before:always; }
+  .lhead{ display:flex; align-items:center; gap:14px; border-bottom:2px solid var(--accent); padding-bottom:10px; margin-bottom:12px; }
+  .lhead .num{ width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:var(--accent);color:#fff; display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px; }
+  .lhead h2{ margin:0; font-size:21px; color:var(--accent); }
+  .lhead .tag{ margin-left:auto; font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+  .p2 .lhead, .p2 .lhead .num{ }
+  .p2 .lhead{ border-color:var(--accent2); } .p2 .lhead h2{ color:var(--accent2); } .p2 .lhead .num{ background:var(--accent2); }
+  .formulas{ background:#eef2fb; border:1px solid #d6def2; border-left:4px solid var(--accent); border-radius:6px; padding:12px 16px; margin:6px 0 14px; }
+  .p2 .formulas{ background:#fbeef2; border-color:#f0d6de; border-left-color:var(--accent2); }
+  .formulas h4{ margin:0 0 6px; color:var(--accent); font-size:12px; text-transform:uppercase; letter-spacing:1px; }
+  .p2 .formulas h4{ color:var(--accent2); }
+  .formulas ul{ margin:0; padding-left:18px; } .formulas li{ margin:4px 0; }
+  h3.sec{ font-size:15px; color:#111; margin:16px 0 4px; }
+  .eg{ background:#fbfbfd; border:1px solid var(--line); border-radius:6px; padding:10px 14px; margin:10px 0; }
+  .eg .et{ font-weight:bold; color:var(--accent2); font-size:13px; }
+  .p2 .eg .et{ color:var(--accent); }
+  .eg .work{ margin:5px 0 0; font-size:14.5px; }
+  .exset h4{ color:var(--accent); font-size:13px; letter-spacing:.5px; text-transform:uppercase; margin:16px 0 6px; border-top:1px solid var(--line); padding-top:10px; }
+  .p2 .exset h4{ color:var(--accent2); }
+  ol.ex{ margin:0; padding-left:22px; } ol.ex li{ margin:5px 0; }
+  .ans{ font-size:13px; color:#374151; background:var(--soft); border-radius:6px; padding:8px 12px; margin-top:10px; }
+  .ans b{ color:var(--accent); }
+  footer{ text-align:center; color:var(--muted); font-size:12px; margin-top:34px; }
+  @media print{ body{ background:#fff; } .page{ box-shadow:none; margin:0; max-width:none; padding:0 14mm; } .eg,.formulas,li{ break-inside:avoid; } }
+  @page{ size:A4; margin:16mm 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="crest">&#960;</div>
+  <div class="sub">Edexcel International A-Level</div>
+  <h1>Pure Mathematics 1 &amp; 2</h1>
+  <div style="font-size:17px;color:var(--muted)">The Lesson Book &middot; Formulas &middot; Summaries &middot; Worked Examples &middot; Practice</div>
+  <div class="rule"></div>
+  <div class="meta" style="color:var(--muted);font-size:14px;margin-top:22px">Prepared for Adam &middot; Harrow Scholarship Preparation</div>
+  <div class="toc">
+    <div><b>Pure 1</b></div><div>&nbsp;</div>
+    <div>1 &middot; Algebraic Expressions</div><div>2 &middot; Quadratics</div>
+    <div>3 &middot; Equations &amp; Inequalities</div><div>4 &middot; Graphs &amp; Transformations</div>
+    <div>5 &middot; Straight-Line Graphs</div><div>6 &middot; Trigonometric Ratios</div>
+    <div>7 &middot; Trig Identities &amp; Equations</div><div>8 &middot; Differentiation</div>
+    <div>9 &middot; Integration</div><div>&nbsp;</div>
+    <div><b>Pure 2</b></div><div>&nbsp;</div>
+    <div>10 &middot; Algebraic Methods</div><div>11 &middot; Circles</div>
+    <div>12 &middot; Exponentials &amp; Logarithms</div><div>13 &middot; Binomial Expansion</div>
+    <div>14 &middot; Sequences &amp; Series</div><div>15 &middot; Radian Measure</div>
+    <div>16 &middot; Differentiation (Optimisation)</div><div>17 &middot; Integration (Area &amp; Trapezium)</div>
+  </div>
+  <div class="howto">
+    <h3>How to use each lesson</h3>
+    Read the <b>formula sheet</b> and copy it out. Read the <b>summary</b> to understand <i>why</i>. Re-do every <b>worked example</b> on paper with the book closed. Then do the <b>practice</b> exercises and check the <b>answers</b> at the foot of the lesson. Anything you miss goes in your error log and is redone the next day.
+  </div>
+</section>
+
+<!-- PART ONE -->
+<section class="page partbar">
+  <div class="lbl">Part One</div>
+  <h1 style="color:var(--accent)">Pure Mathematics 1</h1>
+  <div class="ln" style="background:var(--accent)"></div>
+  <div style="color:var(--muted)">Lessons 1 – 9</div>
+</section>
+
+<!-- LESSON 1 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">1</div><h2>Algebraic Expressions</h2><span class="tag">P1 — Ch 1</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m">a<sup>m</sup> &middot; a<sup>n</sup> = a<sup>m+n</sup></span>, &nbsp; <span class="m">a<sup>m</sup> / a<sup>n</sup> = a<sup>m&minus;n</sup></span>, &nbsp; <span class="m">(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></span></li>
+      <li><span class="m">a<sup>0</sup> = 1</span>, &nbsp; <span class="m">a<sup>&minus;n</sup> = <span class="frac"><span class="n">1</span><span class="d"><span class="m">a<sup>n</sup></span></span></span></span>, &nbsp; <span class="m">a<sup>m/n</sup> = (<sup>n</sup>&radic;a)<sup>m</sup></span></li>
+      <li><span class="m">(a &plusmn; b)<sup>2</sup> = a<sup>2</sup> &plusmn; 2ab + b<sup>2</sup></span>, &nbsp; <span class="m">(a + b)(a &minus; b) = a<sup>2</sup> &minus; b<sup>2</sup></span></li>
+      <li><span class="m"><span class="sqrt"><span>ab</span></span> = <span class="sqrt"><span>a</span></span> <span class="sqrt"><span>b</span></span></span> &nbsp; (rationalise with the conjugate <span class="m">a &minus; <span class="sqrt"><span>b</span></span></span>)</li>
+    </ul>
+  </div>
+  <div class="summary">Algebra is the grammar of everything that follows, so the goal here is speed without thought. Index laws only combine <i>powers of the same base</i> under multiplication and division — never under addition. Factorising is just expanding in reverse: a product equals a sum. Surds are kept exact (never rounded), and a denominator should never be left with a surd in it — clear it using the conjugate.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — fractional index.</span><div class="work"><span class="m">16<sup>3/4</sup> = (<sup>4</sup>&radic;16)<sup>3</sup> = 2<sup>3</sup> = 8</span>. Do the root first, then the power.</div></div>
+  <div class="eg"><span class="et">Example 2 — factorise <span class="m">3x<sup>2</sup> + 10x + 8</span>.</span><div class="work"><span class="m">a&middot;c = 24</span>; split <span class="m">10x = 6x + 4x</span>: &nbsp;<span class="m">3x<sup>2</sup> + 6x + 4x + 8 = 3x(x + 2) + 4(x + 2) = (3x + 4)(x + 2)</span>.</div></div>
+  <div class="eg"><span class="et">Example 3 — rationalise <span class="frac"><span class="n">6</span><span class="d"><span class="m">4 &minus; <span class="sqrt"><span>2</span></span></span></span></span>.</span><div class="work">Multiply by <span class="m">(4 + <span class="sqrt"><span>2</span></span>)</span>: denominator <span class="m">16 &minus; 2 = 14</span>, numerator <span class="m">24 + 6<span class="sqrt"><span>2</span></span></span> &rArr; <span class="frac"><span class="n"><span class="m">12 + 3<span class="sqrt"><span>2</span></span></span></span><span class="d">7</span></span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Simplify <span class="m">(2x<sup>4</sup>)<sup>3</sup></span>.</li>
+      <li>Evaluate <span class="m">8<sup>2/3</sup></span>.</li>
+      <li>Expand <span class="m">(x + 5)(x &minus; 3)</span>.</li>
+      <li>Factorise <span class="m">x<sup>2</sup> + 2x &minus; 15</span>.</li>
+      <li>Simplify <span class="sqrt"><span>48</span></span>.</li>
+      <li>Rationalise <span class="frac"><span class="n">6</span><span class="d"><span class="sqrt"><span>3</span></span></span></span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">8x<sup>12</sup></span> &nbsp; 2) <span class="m">4</span> &nbsp; 3) <span class="m">x<sup>2</sup> + 2x &minus; 15</span> &nbsp; 4) <span class="m">(x + 5)(x &minus; 3)</span> &nbsp; 5) <span class="m">4<span class="sqrt"><span>3</span></span></span> &nbsp; 6) <span class="m">2<span class="sqrt"><span>3</span></span></span></div>
+  </div>
+</section>
+
+<!-- LESSON 2 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">2</div><h2>Quadratics</h2><span class="tag">P1 — Ch 2</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li>Quadratic formula: <span class="m">x = <span class="frac"><span class="n"><span class="m">&minus;b &plusmn; <span class="sqrt"><span>b<sup>2</sup> &minus; 4ac</span></span></span></span><span class="d"><span class="m">2a</span></span></span></span></li>
+      <li>Completed square: <span class="m">x<sup>2</sup> + bx + c = (x + <span class="frac"><span class="n">b</span><span class="d">2</span></span>)<sup>2</sup> &minus; (<span class="frac"><span class="n">b</span><span class="d">2</span></span>)<sup>2</sup> + c</span>; vertex from <span class="m">a(x &minus; h)<sup>2</sup> + k</span> is <span class="m">(h, k)</span></li>
+      <li>Discriminant <span class="m">&Delta; = b<sup>2</sup> &minus; 4ac</span>: &nbsp;<span class="m">&Delta; &gt; 0</span> two roots, <span class="m">&Delta; = 0</span> one, <span class="m">&Delta; &lt; 0</span> none</li>
+    </ul>
+  </div>
+  <div class="summary">A quadratic is a parabola. Factorising and the formula find where it meets the <span class="m">x</span>-axis; completing the square finds its turning point and is the most useful single skill in P1. The discriminant tells you how many real roots exist <i>without solving</i> — which is exactly what &ldquo;find the values of <span class="m">k</span>&hellip;&rdquo; questions test. Some equations are quadratics in disguise: substitute a letter for the repeated chunk.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — complete the square <span class="m">2x<sup>2</sup> &minus; 12x + 7</span>.</span><div class="work"><span class="m">2(x<sup>2</sup> &minus; 6x) + 7 = 2[(x &minus; 3)<sup>2</sup> &minus; 9] + 7 = 2(x &minus; 3)<sup>2</sup> &minus; 11</span>; vertex <span class="m">(3, &minus;11)</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — discriminant.</span><div class="work"><span class="m">x<sup>2</sup> + kx + 9 = 0</span> has equal roots &rArr; <span class="m">k<sup>2</sup> &minus; 36 = 0 &rArr; k = &plusmn;6</span>.</div></div>
+  <div class="eg"><span class="et">Example 3 — hidden quadratic.</span><div class="work"><span class="m">x<sup>4</sup> &minus; 5x<sup>2</sup> + 4 = 0</span>, let <span class="m">u = x<sup>2</sup></span>: <span class="m">(u &minus; 1)(u &minus; 4) = 0 &rArr; x = &plusmn;1, &plusmn;2</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Solve <span class="m">x<sup>2</sup> &minus; 5x + 6 = 0</span>.</li>
+      <li>Solve <span class="m">3x<sup>2</sup> &minus; x &minus; 2 = 0</span>.</li>
+      <li>Complete the square: <span class="m">x<sup>2</sup> + 6x + 5</span>; state the vertex.</li>
+      <li>How many real roots has <span class="m">x<sup>2</sup> &minus; 4x + 4 = 0</span>?</li>
+      <li>Find <span class="m">k</span> for which <span class="m">2x<sup>2</sup> + kx + 2 = 0</span> has equal roots.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">x = 2, 3</span> &nbsp; 2) <span class="m">x = 1, &minus;2/3</span> &nbsp; 3) <span class="m">(x + 3)<sup>2</sup> &minus; 4</span>, vertex <span class="m">(&minus;3, &minus;4)</span> &nbsp; 4) one repeated root <span class="m">(x = 2)</span> &nbsp; 5) <span class="m">k = &plusmn;4</span></div>
+  </div>
+</section>
+
+<!-- LESSON 3 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">3</div><h2>Equations and Inequalities</h2><span class="tag">P1 — Ch 3</span></div>
+  <div class="formulas">
+    <h4>Key ideas</h4>
+    <ul>
+      <li>Linear + quadratic simultaneously: <b>substitute</b> the linear into the quadratic.</li>
+      <li>Multiplying/dividing an inequality by a <b>negative flips</b> the sign.</li>
+      <li>Quadratic inequality <span class="m">(a &gt; 0)</span>: <span class="m">&gt; 0</span> &rArr; outside the roots; <span class="m">&lt; 0</span> &rArr; between the roots.</li>
+    </ul>
+  </div>
+  <div class="summary">Two equations solved together are the points where two graphs meet; a line and a curve meet where substitution gives a quadratic (and the discriminant tells you whether they cross, touch, or miss). Inequalities work like equations with one trap — flipping on a negative — and quadratic inequalities are read off a quick parabola sketch, giving either a single interval &ldquo;between&rdquo; or two intervals &ldquo;outside&rdquo;.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — line and circle.</span><div class="work"><span class="m">y = x + 1</span>, <span class="m">x<sup>2</sup> + y<sup>2</sup> = 25</span> &rArr; <span class="m">2x<sup>2</sup> + 2x &minus; 24 = 0 &rArr; (x + 4)(x &minus; 3) = 0</span>: points <span class="m">(&minus;4, &minus;3)</span>, <span class="m">(3, 4)</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — quadratic inequality.</span><div class="work"><span class="m">x<sup>2</sup> &minus; x &minus; 6 &gt; 0 &rArr; (x &minus; 3)(x + 2) &gt; 0</span> &rArr; <span class="m">x &lt; &minus;2</span> or <span class="m">x &gt; 3</span> (outside the roots).</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Solve <span class="m">x + y = 5</span>, <span class="m">x &minus; y = 1</span>.</li>
+      <li>Solve <span class="m">y = x + 1</span> and <span class="m">y = x<sup>2</sup> &minus; 1</span>.</li>
+      <li>Solve <span class="m">2x + 3 &gt; 7</span>.</li>
+      <li>Solve <span class="m">x<sup>2</sup> &minus; 4 &lt; 0</span>.</li>
+      <li>Solve <span class="m">x<sup>2</sup> &minus; 2x &minus; 3 &ge; 0</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">x = 3, y = 2</span> &nbsp; 2) <span class="m">(2, 3), (&minus;1, 0)</span> &nbsp; 3) <span class="m">x &gt; 2</span> &nbsp; 4) <span class="m">&minus;2 &lt; x &lt; 2</span> &nbsp; 5) <span class="m">x &le; &minus;1</span> or <span class="m">x &ge; 3</span></div>
+  </div>
+</section>
+
+<!-- LESSON 4 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">4</div><h2>Graphs and Transformations</h2><span class="tag">P1 — Ch 4</span></div>
+  <div class="formulas">
+    <h4>Key ideas</h4>
+    <ul>
+      <li>Outside <span class="m">f</span> acts on <span class="m">y</span> (as expected); inside <span class="m">f</span> acts on <span class="m">x</span> (the opposite way).</li>
+      <li><span class="m">f(x) + a</span> up <span class="m">a</span>; &nbsp;<span class="m">f(x + a)</span> left <span class="m">a</span>; &nbsp;<span class="m">af(x)</span> stretch &times;<span class="m">a</span> vertically; &nbsp;<span class="m">f(ax)</span> stretch <span class="m">&times;1/a</span> horizontally.</li>
+      <li><span class="m">&minus;f(x)</span> reflect in the <span class="m">x</span>-axis; &nbsp;<span class="m">f(&minus;x)</span> reflect in the <span class="m">y</span>-axis.</li>
+      <li>Repeated factor <span class="m">(x &minus; a)<sup>2</sup></span> &rArr; the curve <b>touches</b> the axis at <span class="m">x = a</span>.</li>
+    </ul>
+  </div>
+  <div class="summary">To sketch a polynomial, find the axis crossings (each factor zero), the <span class="m">y</span>-intercept, and the end behaviour from the leading term; a squared factor means the curve bounces off the axis rather than crossing. Transformations are best applied to the key points (intercepts and turning points) — and the one thing to burn in is that horizontal shifts go the <i>opposite</i> way to the sign inside the bracket.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — sketch data for <span class="m">y = (x + 1)(x &minus; 2)(x &minus; 3)</span>.</span><div class="work">Crosses at <span class="m">x = &minus;1, 2, 3</span>; <span class="m">y</span>-intercept <span class="m">(0, 6)</span>; positive cubic (rises to the right).</div></div>
+  <div class="eg"><span class="et">Example 2 — transformation.</span><div class="work"><span class="m">y = x<sup>2</sup></span> &rarr; <span class="m">y = (x &minus; 3)<sup>2</sup> + 2</span> is a shift right 3, up 2; the vertex moves <span class="m">(0, 0) &rarr; (3, 2)</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Where does <span class="m">y = (x &minus; 1)(x + 3)</span> cross the axes?</li>
+      <li>Describe <span class="m">y = f(x) &rarr; y = f(x) &minus; 3</span>.</li>
+      <li>Describe <span class="m">y = f(x) &rarr; y = f(x + 2)</span>.</li>
+      <li>State the vertex of <span class="m">y = (x + 1)<sup>2</sup> &minus; 2</span>.</li>
+      <li>Describe <span class="m">y = x<sup>2</sup> &rarr; y = &minus;x<sup>2</sup></span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">x</span>-axis at <span class="m">1, &minus;3</span>; <span class="m">y</span>-axis at <span class="m">(0, &minus;3)</span> &nbsp; 2) down 3 &nbsp; 3) left 2 &nbsp; 4) <span class="m">(&minus;1, &minus;2)</span> &nbsp; 5) reflection in the <span class="m">x</span>-axis</div>
+  </div>
+</section>
+
+<!-- LESSON 5 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">5</div><h2>Straight-Line Graphs</h2><span class="tag">P1 — Ch 5</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li>Gradient <span class="m">m = <span class="frac"><span class="n"><span class="m">y<sub>2</sub> &minus; y<sub>1</sub></span></span><span class="d"><span class="m">x<sub>2</sub> &minus; x<sub>1</sub></span></span></span></span>; &nbsp; line: <span class="m">y &minus; y<sub>1</sub> = m(x &minus; x<sub>1</sub>)</span></li>
+      <li>Midpoint <span class="m">(<span class="frac"><span class="n"><span class="m">x<sub>1</sub>+x<sub>2</sub></span></span><span class="d">2</span></span>, <span class="frac"><span class="n"><span class="m">y<sub>1</sub>+y<sub>2</sub></span></span><span class="d">2</span></span>)</span>; &nbsp; distance <span class="m"><span class="sqrt"><span>(x<sub>2</sub>&minus;x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub>&minus;y<sub>1</sub>)<sup>2</sup></span></span></span></li>
+      <li>Parallel: equal gradients. &nbsp; Perpendicular: <span class="m">m<sub>1</sub> m<sub>2</sub> = &minus;1</span> (negative reciprocal).</li>
+    </ul>
+  </div>
+  <div class="summary">Everything about a straight line comes from its gradient and one point. The form <span class="m">y &minus; y<sub>1</sub> = m(x &minus; x<sub>1</sub>)</span> handles almost every question. The single most-tested idea is perpendicularity: the gradient you need is the <i>negative reciprocal</i> — flip it and change the sign. When a question asks for <span class="m">ax + by + c = 0</span>, clear all fractions at the end.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — perpendicular line.</span><div class="work">Through <span class="m">(2, 5)</span> perpendicular to <span class="m">y = 3x &minus; 1</span>: new gradient <span class="m">&minus;1/3</span>, so <span class="m">y &minus; 5 = &minus;&#8531;(x &minus; 2) &rArr; x + 3y &minus; 17 = 0</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — distance.</span><div class="work">From <span class="m">(1, 2)</span> to <span class="m">(4, 6)</span>: <span class="m"><span class="sqrt"><span>3<sup>2</sup> + 4<sup>2</sup></span></span> = <span class="sqrt"><span>25</span></span> = 5</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Gradient through <span class="m">(0, 0)</span> and <span class="m">(4, 8)</span>.</li>
+      <li>Equation through <span class="m">(1, 1)</span> with gradient 2 (as <span class="m">y = mx + c</span>).</li>
+      <li>Gradient of any line perpendicular to <span class="m">y = 2x + 3</span>.</li>
+      <li>Midpoint of <span class="m">(2, 4)</span> and <span class="m">(6, 10)</span>.</li>
+      <li>Distance from <span class="m">(0, 0)</span> to <span class="m">(3, 4)</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">2</span> &nbsp; 2) <span class="m">y = 2x &minus; 1</span> &nbsp; 3) <span class="m">&minus;1/2</span> &nbsp; 4) <span class="m">(4, 7)</span> &nbsp; 5) <span class="m">5</span></div>
+  </div>
+</section>
+
+<!-- LESSON 6 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">6</div><h2>Trigonometric Ratios</h2><span class="tag">P1 — Ch 6</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li>Sine rule: <span class="m"><span class="frac"><span class="n">a</span><span class="d"><span class="m">sin A</span></span></span> = <span class="frac"><span class="n">b</span><span class="d"><span class="m">sin B</span></span></span> = <span class="frac"><span class="n">c</span><span class="d"><span class="m">sin C</span></span></span></span></li>
+      <li>Cosine rule: <span class="m">a<sup>2</sup> = b<sup>2</sup> + c<sup>2</sup> &minus; 2bc cos A</span></li>
+      <li>Area <span class="m">= &frac12; ab sin C</span></li>
+      <li>Exact: <span class="m">sin 30&deg; = &frac12;</span>, <span class="m">cos 30&deg; = <span class="frac"><span class="n"><span class="sqrt"><span>3</span></span></span><span class="d">2</span></span></span>, <span class="m">tan 45&deg; = 1</span>, <span class="m">sin 60&deg; = <span class="frac"><span class="n"><span class="sqrt"><span>3</span></span></span><span class="d">2</span></span></span></li>
+    </ul>
+  </div>
+  <div class="summary">Use the <b>sine rule</b> when you have a side paired with its opposite angle, and the <b>cosine rule</b> for three sides or for two sides and the angle between them. The area formula needs two sides and the <i>included</i> angle. Keep the calculator in degree mode for this chapter, and learn the exact values — examiners love them.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — cosine rule.</span><div class="work"><span class="m">a = 8, b = 5, C = 60&deg;</span>: <span class="m">c<sup>2</sup> = 64 + 25 &minus; 2(8)(5)cos 60&deg; = 89 &minus; 40 = 49 &rArr; c = 7</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — area.</span><div class="work">Sides 7 and 9, included angle <span class="m">40&deg;</span>: <span class="m">&frac12;(7)(9)sin 40&deg; &asymp; 20.2</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li><span class="m">a = 5, b = 7, C = 60&deg;</span>. Find <span class="m">c</span> (2 d.p.).</li>
+      <li>Area of a triangle with sides 6 and 10 and included angle <span class="m">30&deg;</span>.</li>
+      <li>Exact value of <span class="m">sin 30&deg; + cos 60&deg;</span>.</li>
+      <li>Solve <span class="m">sin x = <span class="frac"><span class="n"><span class="sqrt"><span>2</span></span></span><span class="d">2</span></span></span> for <span class="m">0 &le; x &lt; 360&deg;</span>.</li>
+      <li>Exact value of <span class="m">tan 45&deg; + sin 30&deg;</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">c = <span class="sqrt"><span>39</span></span> &asymp; 6.24</span> &nbsp; 2) <span class="m">15</span> &nbsp; 3) <span class="m">1</span> &nbsp; 4) <span class="m">x = 45&deg;, 135&deg;</span> &nbsp; 5) <span class="m">1.5</span></div>
+  </div>
+</section>
+
+<!-- LESSON 7 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">7</div><h2>Trigonometric Identities and Equations</h2><span class="tag">P1 — Ch 7</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m">sin<sup>2</sup>&theta; + cos<sup>2</sup>&theta; = 1</span> &nbsp; (so <span class="m">sin<sup>2</sup>&theta; = 1 &minus; cos<sup>2</sup>&theta;</span>)</li>
+      <li><span class="m">tan &theta; = <span class="frac"><span class="n"><span class="m">sin &theta;</span></span><span class="d"><span class="m">cos &theta;</span></span></span></span></li>
+      <li>Second solution: sine &rarr; <span class="m">180&deg; &minus; &theta;</span>; &nbsp; cosine &rarr; <span class="m">360&deg; &minus; &theta;</span>; &nbsp; tangent repeats every <span class="m">180&deg;</span>.</li>
+    </ul>
+  </div>
+  <div class="summary">Two identities carry the whole chapter. To prove an identity, work on one side only until it becomes the other. To solve an equation, isolate the ratio, take the inverse for the first angle, then use the symmetry rules to collect every solution in the range. If <span class="m">sin<sup>2</sup></span> and <span class="m">cos</span> both appear, convert with <span class="m">sin<sup>2</sup> = 1 &minus; cos<sup>2</sup></span> so it becomes a quadratic in one ratio.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — solve in range.</span><div class="work"><span class="m">sin x = &frac12;</span>, <span class="m">0 &le; x &lt; 360&deg;</span>: first <span class="m">30&deg;</span>, then <span class="m">180&deg; &minus; 30&deg; = 150&deg;</span> &rArr; <span class="m">x = 30&deg;, 150&deg;</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — quadratic in sine.</span><div class="work"><span class="m">2 sin<sup>2</sup>x + sin x &minus; 1 = 0 &rArr; (2 sin x &minus; 1)(sin x + 1) = 0</span> &rArr; <span class="m">sin x = &frac12;</span> or <span class="m">&minus;1</span> &rArr; <span class="m">x = 30&deg;, 150&deg;, 270&deg;</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Solve <span class="m">cos x = 0.5</span>, <span class="m">0 &le; x &lt; 360&deg;</span>.</li>
+      <li>Solve <span class="m">tan x = <span class="sqrt"><span>3</span></span></span>, <span class="m">0 &le; x &lt; 360&deg;</span>.</li>
+      <li>Solve <span class="m">2 sin x &minus; 1 = 0</span>, <span class="m">0 &le; x &lt; 360&deg;</span>.</li>
+      <li>Prove <span class="m">cos x &middot; tan x = sin x</span>.</li>
+      <li>Solve <span class="m">sin<sup>2</sup>x &minus; sin x = 0</span>, <span class="m">0 &le; x &lt; 360&deg;</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">60&deg;, 300&deg;</span> &nbsp; 2) <span class="m">60&deg;, 240&deg;</span> &nbsp; 3) <span class="m">30&deg;, 150&deg;</span> &nbsp; 4) <span class="m">cos x(sin x / cos x) = sin x</span> &#9632; &nbsp; 5) <span class="m">0&deg;, 90&deg;, 180&deg;</span></div>
+  </div>
+</section>
+
+<!-- LESSON 8 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">8</div><h2>Differentiation</h2><span class="tag">P1 — Ch 8</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m"><span class="frac"><span class="n">d</span><span class="d"><span class="m">dx</span></span></span> (x<sup>n</sup>) = n x<sup>n&minus;1</sup></span> &nbsp; (differentiate term by term)</li>
+      <li>Tangent gradient <span class="m">= f&prime;(a)</span>; &nbsp; normal gradient <span class="m">= &minus;1 / f&prime;(a)</span></li>
+      <li>Stationary: <span class="m">f&prime;(x) = 0</span>; &nbsp; <span class="m">f&Prime; &gt; 0</span> minimum, <span class="m">f&Prime; &lt; 0</span> maximum</li>
+      <li>Increasing where <span class="m">f&prime;(x) &gt; 0</span>, decreasing where <span class="m">f&prime;(x) &lt; 0</span></li>
+    </ul>
+  </div>
+  <div class="summary">The derivative is the gradient of the curve at each point. Bring the power down and reduce it by one — but first rewrite roots and fractions as powers (<span class="m"><span class="sqrt"><span>x</span></span> = x<sup>1/2</sup></span>, <span class="m">1/x = x<sup>&minus;1</sup></span>). Setting the derivative to zero finds turning points; the second derivative tells you which is a peak and which is a valley.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — tangent.</span><div class="work"><span class="m">y = x<sup>2</sup></span> at <span class="m">x = 3</span>: point <span class="m">(3, 9)</span>, <span class="m">f&prime;(3) = 6</span>; tangent <span class="m">y &minus; 9 = 6(x &minus; 3) &rArr; y = 6x &minus; 9</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — stationary points.</span><div class="work"><span class="m">y = x<sup>3</sup> &minus; 3x<sup>2</sup></span>: <span class="m">f&prime; = 3x(x &minus; 2) = 0 &rArr; x = 0, 2</span>; <span class="m">f&Prime; = 6x &minus; 6</span> &rArr; max <span class="m">(0, 0)</span>, min <span class="m">(2, &minus;4)</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Differentiate <span class="m">y = 5x<sup>2</sup> &minus; 3x</span>.</li>
+      <li>Differentiate <span class="m">y = x<sup>3</sup> + 2x</span>.</li>
+      <li>Gradient of <span class="m">y = x<sup>2</sup></span> at <span class="m">x = 4</span>.</li>
+      <li>Find and classify the stationary point of <span class="m">y = x<sup>2</sup> &minus; 6x + 1</span>.</li>
+      <li>Differentiate <span class="m">y = <span class="frac"><span class="n">1</span><span class="d"><span class="m">x</span></span></span></span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">10x &minus; 3</span> &nbsp; 2) <span class="m">3x<sup>2</sup> + 2</span> &nbsp; 3) <span class="m">8</span> &nbsp; 4) <span class="m">(3, &minus;8)</span>, minimum &nbsp; 5) <span class="m">&minus;1/x<sup>2</sup></span></div>
+  </div>
+</section>
+
+<!-- LESSON 9 -->
+<section class="page lesson">
+  <div class="lhead"><div class="num">9</div><h2>Integration</h2><span class="tag">P1 — Ch 9</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m">&#8747; x<sup>n</sup> dx = <span class="frac"><span class="n"><span class="m">x<sup>n+1</sup></span></span><span class="d"><span class="m">n + 1</span></span></span> + C</span> &nbsp;(<span class="m">n &ne; &minus;1</span>) — always <span class="m">+ C</span> for indefinite</li>
+      <li>Definite: <span class="m">&#8747;<sub>a</sub><sup>b</sup> f(x) dx = F(b) &minus; F(a)</span></li>
+      <li>Area under a curve (above the axis) <span class="m">= &#8747;<sub>a</sub><sup>b</sup> y dx</span></li>
+    </ul>
+  </div>
+  <div class="summary">Integration reverses differentiation: raise the power by one and divide by the new power. The constant <span class="m">+ C</span> matters for indefinite integrals and is found from a point on the curve. A definite integral has limits, needs no <span class="m">+ C</span>, and measures the area between the curve and the <span class="m">x</span>-axis — with the warning that area below the axis comes out negative, so split at the roots.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — indefinite.</span><div class="work"><span class="m">&#8747;(3x<sup>2</sup> &minus; 4x + 1) dx = x<sup>3</sup> &minus; 2x<sup>2</sup> + x + C</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — area.</span><div class="work">Area under <span class="m">y = x<sup>2</sup></span> from 0 to 3: <span class="m">[x<sup>3</sup>/3]<sub>0</sub><sup>3</sup> = 9</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Find <span class="m">&#8747; 4x<sup>3</sup> dx</span>.</li>
+      <li>Find <span class="m">&#8747; (2x + 1) dx</span>.</li>
+      <li>Evaluate <span class="m">&#8747;<sub>0</sub><sup>1</sup> 3x<sup>2</sup> dx</span>.</li>
+      <li>Evaluate <span class="m">&#8747;<sub>1</sub><sup>2</sup> 2x dx</span>.</li>
+      <li>A curve has <span class="frac"><span class="n"><span class="m">dy</span></span><span class="d"><span class="m">dx</span></span></span> <span class="m">= 2</span> and passes through <span class="m">(1, 5)</span>. Find <span class="m">y</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">x<sup>4</sup> + C</span> &nbsp; 2) <span class="m">x<sup>2</sup> + x + C</span> &nbsp; 3) <span class="m">1</span> &nbsp; 4) <span class="m">3</span> &nbsp; 5) <span class="m">y = 2x + 3</span></div>
+  </div>
+</section>
+
+<!-- PART TWO -->
+<section class="page partbar">
+  <div class="lbl">Part Two</div>
+  <h1 style="color:var(--accent2)">Pure Mathematics 2</h1>
+  <div class="ln" style="background:var(--accent2)"></div>
+  <div style="color:var(--muted)">Lessons 10 – 17</div>
+</section>
+
+<!-- LESSON 10 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">10</div><h2>Algebraic Methods</h2><span class="tag">P2 — Ch 1</span></div>
+  <div class="formulas">
+    <h4>Key ideas</h4>
+    <ul>
+      <li><b>Remainder theorem:</b> dividing <span class="m">f(x)</span> by <span class="m">(x &minus; a)</span> leaves remainder <span class="m">f(a)</span>.</li>
+      <li><b>Factor theorem:</b> <span class="m">(x &minus; a)</span> is a factor <span class="m">&hArr; f(a) = 0</span>.</li>
+      <li>To factorise a cubic: find one root by trial, divide it out, factorise the quadratic.</li>
+    </ul>
+  </div>
+  <div class="summary">This lesson is about polynomials beyond quadratics. The factor theorem is the key that unlocks cubics: test small values until one gives zero, which hands you a linear factor; divide and you are left with a quadratic you already know how to crack. The remainder theorem is the same evaluation idea used to find what is left over without doing the full division. Algebraic fractions simplify by factorising top and bottom and cancelling.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — factor theorem.</span><div class="work"><span class="m">f(x) = x<sup>3</sup> &minus; 3x<sup>2</sup> &minus; x + 3</span>: <span class="m">f(1) = 0</span> so <span class="m">(x &minus; 1)</span> is a factor &rArr; <span class="m">(x &minus; 1)(x &minus; 3)(x + 1)</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — remainder.</span><div class="work"><span class="m">f(x) = x<sup>3</sup> + 2x<sup>2</sup> &minus; 3x + 4</span> &divide; <span class="m">(x &minus; 2)</span>: remainder <span class="m">f(2) = 8 + 8 &minus; 6 + 4 = 14</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Remainder when <span class="m">x<sup>3</sup> + 1</span> is divided by <span class="m">(x &minus; 1)</span>.</li>
+      <li>Is <span class="m">(x &minus; 2)</span> a factor of <span class="m">x<sup>3</sup> &minus; 8</span>?</li>
+      <li>Simplify <span class="frac"><span class="n"><span class="m">x<sup>2</sup> &minus; 1</span></span><span class="d"><span class="m">x + 1</span></span></span>.</li>
+      <li>Remainder when <span class="m">x<sup>2</sup> &minus; 3x + 2</span> is divided by <span class="m">(x + 2)</span>.</li>
+      <li>Factorise <span class="m">x<sup>3</sup> &minus; x</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">2</span> &nbsp; 2) yes (<span class="m">f(2) = 0</span>) &nbsp; 3) <span class="m">x &minus; 1</span> &nbsp; 4) <span class="m">12</span> &nbsp; 5) <span class="m">x(x &minus; 1)(x + 1)</span></div>
+  </div>
+</section>
+
+<!-- LESSON 11 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">11</div><h2>Circles</h2><span class="tag">P2 — Ch 2</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li>Circle, centre <span class="m">(a, b)</span>, radius <span class="m">r</span>: <span class="m">(x &minus; a)<sup>2</sup> + (y &minus; b)<sup>2</sup> = r<sup>2</sup></span></li>
+      <li>General form: complete the square in <span class="m">x</span> and <span class="m">y</span> to find centre and radius.</li>
+      <li>The tangent is perpendicular to the radius at the point of contact.</li>
+    </ul>
+  </div>
+  <div class="summary">A circle equation is just Pythagoras around a centre. Given the messy general form, completing the square in both variables recovers the centre and radius. Most circle problems then reduce to one fact: the radius to a point and the tangent there are perpendicular, so their gradients multiply to <span class="m">&minus;1</span>.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — centre and radius.</span><div class="work"><span class="m">x<sup>2</sup> + y<sup>2</sup> &minus; 6x + 4y &minus; 12 = 0 &rArr; (x &minus; 3)<sup>2</sup> + (y + 2)<sup>2</sup> = 25</span>: centre <span class="m">(3, &minus;2)</span>, radius 5.</div></div>
+  <div class="eg"><span class="et">Example 2 — tangent.</span><div class="work">Centre <span class="m">(3, &minus;2)</span>, point <span class="m">P(6, 2)</span>: radius gradient <span class="m">4/3</span>, tangent gradient <span class="m">&minus;3/4</span> &rArr; <span class="m">3x + 4y &minus; 26 = 0</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Centre and radius of <span class="m">(x &minus; 1)<sup>2</sup> + (y &minus; 2)<sup>2</sup> = 16</span>.</li>
+      <li>Centre and radius of <span class="m">x<sup>2</sup> + y<sup>2</sup> &minus; 4x &minus; 6y + 9 = 0</span>.</li>
+      <li>Does <span class="m">(5, 0)</span> lie on <span class="m">(x &minus; 1)<sup>2</sup> + y<sup>2</sup> = 16</span>?</li>
+      <li>Gradient of the tangent at <span class="m">(3, 4)</span> to a circle centred at the origin.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) centre <span class="m">(1, 2)</span>, radius 4 &nbsp; 2) <span class="m">(x &minus; 2)<sup>2</sup> + (y &minus; 3)<sup>2</sup> = 4</span>: centre <span class="m">(2, 3)</span>, radius 2 &nbsp; 3) yes (<span class="m">16 = 16</span>) &nbsp; 4) <span class="m">&minus;3/4</span></div>
+  </div>
+</section>
+
+<!-- LESSON 12 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">12</div><h2>Exponentials and Logarithms</h2><span class="tag">P2 — Ch 3</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m">log<sub>a</sub> x = y &hArr; a<sup>y</sup> = x</span>; &nbsp; <span class="m">ln x = log<sub>e</sub> x</span></li>
+      <li><span class="m">log(xy) = log x + log y</span>, &nbsp; <span class="m">log(x/y) = log x &minus; log y</span>, &nbsp; <span class="m">log(x<sup>k</sup>) = k log x</span></li>
+      <li>To solve <span class="m">a<sup>x</sup> = b</span>: <span class="m">x = log b / log a</span> (or take <span class="m">ln</span>).</li>
+    </ul>
+  </div>
+  <div class="summary">A logarithm answers &ldquo;what power?&rdquo;. The three laws turn products into sums, quotients into differences, and powers into multipliers — which is how exponential equations get solved: take logs of both sides and the unknown power comes down. Always reject solutions that would require the log of zero or a negative number.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — solve.</span><div class="work"><span class="m">3<sup>x</sup> = 20 &rArr; x = ln 20 / ln 3 &asymp; 2.73</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — log laws.</span><div class="work"><span class="m">2 log x &minus; log 3 = log 12 &rArr; log(x<sup>2</sup>/3) = log 12 &rArr; x<sup>2</sup> = 36 &rArr; x = 6</span> (reject <span class="m">&minus;6</span>).</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Solve <span class="m">2<sup>x</sup> = 8</span>.</li>
+      <li>Evaluate <span class="m">log<sub>3</sub> 81</span>.</li>
+      <li>Write <span class="m">log 6 + log 2</span> as a single logarithm.</li>
+      <li>Solve <span class="m">10<sup>x</sup> = 50</span> (2 d.p.).</li>
+      <li>Evaluate <span class="m">ln e<sup>3</sup></span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">x = 3</span> &nbsp; 2) <span class="m">4</span> &nbsp; 3) <span class="m">log 12</span> &nbsp; 4) <span class="m">x &asymp; 1.70</span> &nbsp; 5) <span class="m">3</span></div>
+  </div>
+</section>
+
+<!-- LESSON 13 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">13</div><h2>The Binomial Expansion</h2><span class="tag">P2 — Ch 4</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m">(a + b)<sup>n</sup> = &Sigma; <sup>n</sup>C<sub>r</sub> a<sup>n&minus;r</sup> b<sup>r</sup></span></li>
+      <li><span class="m"><sup>n</sup>C<sub>r</sub> = <span class="frac"><span class="n"><span class="m">n!</span></span><span class="d"><span class="m">r!(n &minus; r)!</span></span></span></span> &nbsp;(the <span class="m">nCr</span> button)</li>
+      <li>The term in <span class="m">b<sup>r</sup></span> is <span class="m"><sup>n</sup>C<sub>r</sub> a<sup>n&minus;r</sup> b<sup>r</sup></span>.</li>
+    </ul>
+  </div>
+  <div class="summary">The binomial theorem expands a bracket raised to a power without multiplying it out by hand. Each term pairs a Pascal/<span class="m">nCr</span> coefficient with falling powers of the first term and rising powers of the second. For a single coefficient you don&rsquo;t expand everything — you jump straight to the term you need, and you must include the powers of any number inside the bracket.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — full expansion.</span><div class="work"><span class="m">(2 + x)<sup>4</sup> = 16 + 32x + 24x<sup>2</sup> + 8x<sup>3</sup> + x<sup>4</sup></span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — single coefficient.</span><div class="work">Coefficient of <span class="m">x<sup>3</sup></span> in <span class="m">(1 + 2x)<sup>5</sup></span>: <span class="m"><sup>5</sup>C<sub>3</sub> (2x)<sup>3</sup> = 10 &middot; 8x<sup>3</sup></span> &rArr; <span class="m">80</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Expand <span class="m">(1 + x)<sup>4</sup></span>.</li>
+      <li>Coefficient of <span class="m">x<sup>2</sup></span> in <span class="m">(1 + x)<sup>6</sup></span>.</li>
+      <li>Expand <span class="m">(2 + x)<sup>3</sup></span>.</li>
+      <li>Coefficient of <span class="m">x<sup>3</sup></span> in <span class="m">(1 + 3x)<sup>4</sup></span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">1 + 4x + 6x<sup>2</sup> + 4x<sup>3</sup> + x<sup>4</sup></span> &nbsp; 2) <span class="m">15</span> &nbsp; 3) <span class="m">8 + 12x + 6x<sup>2</sup> + x<sup>3</sup></span> &nbsp; 4) <span class="m">108</span></div>
+  </div>
+</section>
+
+<!-- LESSON 14 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">14</div><h2>Sequences and Series</h2><span class="tag">P2 — Ch 5</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li>Arithmetic: <span class="m">u<sub>n</sub> = a + (n &minus; 1)d</span>; &nbsp; <span class="m">S<sub>n</sub> = <span class="frac"><span class="n">n</span><span class="d">2</span></span>[2a + (n &minus; 1)d]</span></li>
+      <li>Geometric: <span class="m">u<sub>n</sub> = a r<sup>n&minus;1</sup></span>; &nbsp; <span class="m">S<sub>n</sub> = <span class="frac"><span class="n"><span class="m">a(1 &minus; r<sup>n</sup>)</span></span><span class="d"><span class="m">1 &minus; r</span></span></span></span></li>
+      <li>Sum to infinity (<span class="m">|r| &lt; 1</span>): <span class="m">S<sub>&infin;</sub> = <span class="frac"><span class="n">a</span><span class="d"><span class="m">1 &minus; r</span></span></span></span></li>
+    </ul>
+  </div>
+  <div class="summary">Arithmetic sequences add a fixed amount each step; geometric ones multiply by a fixed ratio. Identify the first term and the difference or ratio, then choose the right formula. A geometric series only has a finite sum to infinity when the ratio is between <span class="m">&minus;1</span> and <span class="m">1</span>, where the terms shrink to nothing.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — arithmetic.</span><div class="work"><span class="m">a = 3, d = 5</span>: 10th term <span class="m">= 3 + 9(5) = 48</span>; <span class="m">S<sub>10</sub> = 5(2&middot;3 + 9&middot;5) = 255</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — sum to infinity.</span><div class="work"><span class="m">a = 8, r = &frac12; &rArr; S<sub>&infin;</sub> = 8 / (1 &minus; &frac12;) = 16</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Arithmetic <span class="m">a = 2, d = 4</span>: the 10th term.</li>
+      <li>Same sequence: <span class="m">S<sub>10</sub></span>.</li>
+      <li>Geometric <span class="m">a = 1, r = 2</span>: the 8th term.</li>
+      <li>Same sequence: <span class="m">S<sub>8</sub></span>.</li>
+      <li>Geometric <span class="m">a = 9, r = <span class="frac"><span class="n">1</span><span class="d">3</span></span></span>: the sum to infinity.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">38</span> &nbsp; 2) <span class="m">200</span> &nbsp; 3) <span class="m">128</span> &nbsp; 4) <span class="m">255</span> &nbsp; 5) <span class="m">13.5</span></div>
+  </div>
+</section>
+
+<!-- LESSON 15 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">15</div><h2>Radian Measure</h2><span class="tag">P2 — Ch 6</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li><span class="m">&pi; rad = 180&deg;</span></li>
+      <li>Arc length <span class="m">s = r&theta;</span>; &nbsp; sector area <span class="m">A = &frac12; r<sup>2</sup>&theta;</span> &nbsp;(<span class="m">&theta;</span> in radians)</li>
+      <li>Segment area <span class="m">= &frac12; r<sup>2</sup>(&theta; &minus; sin &theta;)</span></li>
+    </ul>
+  </div>
+  <div class="summary">Radians measure angle by arc length rather than degrees, which makes the arc and sector formulas beautifully simple — but they only work in radians, so convert first and switch the calculator to radian mode. A sector is a &ldquo;pizza slice&rdquo;; subtract the triangle from it to get a segment.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — arc and sector.</span><div class="work"><span class="m">r = 6, &theta; = 1.2</span>: arc <span class="m">= 6(1.2) = 7.2</span>; area <span class="m">= &frac12;(36)(1.2) = 21.6</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — convert.</span><div class="work"><span class="m">60&deg; = 60 &times; &pi;/180 = &pi;/3</span> rad.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Convert <span class="m">90&deg;</span> to radians.</li>
+      <li>Convert <span class="m">&pi;/3</span> to degrees.</li>
+      <li>Arc length for <span class="m">r = 5, &theta; = 2</span>.</li>
+      <li>Sector area for <span class="m">r = 5, &theta; = 2</span>.</li>
+      <li>Convert <span class="m">270&deg;</span> to radians.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">&pi;/2</span> &nbsp; 2) <span class="m">60&deg;</span> &nbsp; 3) <span class="m">10</span> &nbsp; 4) <span class="m">25</span> &nbsp; 5) <span class="m">3&pi;/2</span></div>
+  </div>
+</section>
+
+<!-- LESSON 16 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">16</div><h2>Differentiation (Optimisation)</h2><span class="tag">P2 — Ch 7</span></div>
+  <div class="formulas">
+    <h4>Method — optimisation</h4>
+    <ul>
+      <li>Write the quantity to optimise as a formula.</li>
+      <li>Use the constraint to reduce it to one variable.</li>
+      <li>Differentiate, set <span class="m">= 0</span>, solve; justify max/min with <span class="m">f&Prime;</span>.</li>
+      <li>Answer the real question (often the value, not just <span class="m">x</span>).</li>
+    </ul>
+  </div>
+  <div class="summary">Optimisation applies the differentiation you already know to real shapes: maximise an area or volume, or minimise material. The art is the setup — write the target, then use the given constraint to eliminate a variable so you have a function of one thing to differentiate. Setting the derivative to zero finds the optimum; the second derivative confirms it&rsquo;s the max or min you want.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — maximise area.</span><div class="work">40 m of fence, three sides: <span class="m">2x + y = 40 &rArr; A = x(40 &minus; 2x) = 40x &minus; 2x<sup>2</sup></span>; <span class="m">A&prime; = 40 &minus; 4x = 0 &rArr; x = 10, y = 20</span>; max area <span class="m">200 m<sup>2</sup></span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — turning points.</span><div class="work"><span class="m">y = x<sup>3</sup> &minus; 3x</span>: <span class="m">f&prime; = 3x<sup>2</sup> &minus; 3 = 0 &rArr; x = &plusmn;1</span>; min <span class="m">(1, &minus;2)</span>, max <span class="m">(&minus;1, 2)</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Find and classify the stationary point of <span class="m">y = x<sup>2</sup> &minus; 4x + 1</span>.</li>
+      <li>A rectangle has perimeter 20. Find the maximum area.</li>
+      <li>Find the stationary points of <span class="m">y = x<sup>3</sup> &minus; 3x</span> and their nature.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">(2, &minus;3)</span>, minimum &nbsp; 2) <span class="m">5 &times; 5 = 25</span> &nbsp; 3) min <span class="m">(1, &minus;2)</span>, max <span class="m">(&minus;1, 2)</span></div>
+  </div>
+</section>
+
+<!-- LESSON 17 -->
+<section class="page lesson p2">
+  <div class="lhead"><div class="num">17</div><h2>Integration (Area &amp; Trapezium Rule)</h2><span class="tag">P2 — Ch 8</span></div>
+  <div class="formulas">
+    <h4>Key formulas</h4>
+    <ul>
+      <li>Area between a curve and a line <span class="m">= &#8747; (top &minus; bottom) dx</span> between intersection points.</li>
+      <li>Trapezium rule: <span class="m">&#8747;<sub>a</sub><sup>b</sup> y dx &asymp; <span class="frac"><span class="n">h</span><span class="d">2</span></span>[y<sub>0</sub> + y<sub>n</sub> + 2(y<sub>1</sub> + &hellip; + y<sub>n&minus;1</sub>)]</span>, &nbsp; <span class="m">h = (b &minus; a)/n</span></li>
+    </ul>
+  </div>
+  <div class="summary">This extends integration to areas trapped between two graphs (integrate the upper minus the lower across their meeting points) and to curves you cannot integrate exactly, where the trapezium rule slices the area into strips and adds their areas. The one thing students forget: the first and last heights are not doubled, and <span class="m">h</span> is the strip width, found by dividing the interval by the number of strips.</div>
+  <h3 class="sec">Worked examples</h3>
+  <div class="eg"><span class="et">Example 1 — area between graphs.</span><div class="work"><span class="m">y = x<sup>2</sup></span> and <span class="m">y = x + 2</span> meet at <span class="m">x = &minus;1, 2</span>; area <span class="m">= &#8747;<sub>&minus;1</sub><sup>2</sup>[(x + 2) &minus; x<sup>2</sup>] dx = 4.5</span>.</div></div>
+  <div class="eg"><span class="et">Example 2 — trapezium rule.</span><div class="work"><span class="m">&#8747;<sub>1</sub><sup>4</sup> (1/x) dx</span>, 3 strips, ordinates <span class="m">1, 0.5, 0.333, 0.25</span>: <span class="m">&asymp; &frac12;[1.25 + 2(0.833)] &asymp; 1.46</span>.</div></div>
+  <div class="exset">
+    <h4>Practice</h4>
+    <ol class="ex">
+      <li>Evaluate <span class="m">&#8747;<sub>0</sub><sup>2</sup> x dx</span>.</li>
+      <li>Area under <span class="m">y = x<sup>2</sup></span> from 0 to 2.</li>
+      <li>Evaluate <span class="m">&#8747;<sub>1</sub><sup>4</sup> x<sup>&minus;1/2</sup> dx</span>.</li>
+      <li>Trapezium rule, 2 strips, for <span class="m">&#8747;<sub>0</sub><sup>2</sup> x<sup>2</sup> dx</span>.</li>
+    </ol>
+    <div class="ans"><b>Answers:</b> 1) <span class="m">2</span> &nbsp; 2) <span class="m">8/3</span> &nbsp; 3) <span class="m">[2<span class="sqrt"><span>x</span></span>]<sub>1</sub><sup>4</sup> = 2</span> &nbsp; 4) <span class="m">3</span> (exact <span class="m">8/3 &asymp; 2.667</span>)</div>
+  </div>
+  <footer>Edexcel International A-Level &middot; Pure Mathematics 1 &amp; 2 &middot; The Lesson Book &middot; Formulas, Summaries, Worked Examples &amp; Practice</footer>
+</section>
+
+</body>
+</html>
