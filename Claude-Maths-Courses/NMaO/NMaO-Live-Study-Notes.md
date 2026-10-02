@@ -2455,3 +2455,98 @@ Thus $a=b$. Substituting $b=a$ into $2a=b+c$ gives $2a=a+c$, so $c=a$. Hence equ
 $$
 \boxed{a=b=c>0}.
 $$
+
+## 2026-10-01 - A09 restart: what homogeneity is and how to use it
+
+### The one idea
+
+A statement is **homogeneous** when multiplying every variable by the same factor $t$ multiplies every part of it by the same power of $t$. Then the common size of the variables does not matter. Only their proportions do.
+
+Test with $(x+y)^2\ge4xy$. Replace $x,y$ by $tx,ty$:
+
+$$
+(tx+ty)^2=t^2(x+y)^2,
+\qquad
+4(tx)(ty)=t^2\cdot4xy.
+$$
+
+Both sides gain the same factor $t^2$. Since $t^2>0$, the inequality holds for $(x,y)$ exactly when it holds for $(tx,ty)$. So the pairs $(1,3)$, $(2,6)$ and $(50,150)$ are all the same problem.
+
+### Why that is useful: we may fix the size
+
+If the size does not matter, we are allowed to choose it. For $x,y>0$ pick
+
+$$
+t=\frac1{x+y}.
+$$
+
+The new variables $x'=tx$ and $y'=ty$ satisfy $x'+y'=1$. The statement for $(x',y')$ is equivalent to the statement for $(x,y)$, so it is enough to prove it when $x+y=1$. This is called **normalising**.
+
+Example. Under $x+y=1$ the target $(x+y)^2\ge4xy$ becomes
+
+$$
+1\ge4xy,
+\qquad\text{i.e.}\qquad
+xy\le\frac14.
+$$
+
+This is a one-variable question: with $y=1-x$, we need $x(1-x)\le\frac14$, which is $(x-\tfrac12)^2\ge0$. The problem has become smaller.
+
+### Why the degrees must match
+
+Take the non-homogeneous claim $x^2+y^2\ge x+y$. The left side has degree $2$ and the right side has degree $1$. Test $x=y=1$: $2\ge2$ is true. Now scale by $t=\frac1{10}$, giving $x=y=0.1$:
+
+$$
+0.01+0.01=0.02
+\quad\text{versus}\quad
+0.1+0.1=0.2.
+$$
+
+The inequality fails. So scaling changed the truth of the statement, and we cannot normalise. The degree check is what protects you from this mistake.
+
+### Three ways to use it in olympiad problems
+
+**1. Reduce the number of variables.** A homogeneous inequality in $a,b,c>0$ lets you assume $a+b+c=1$ or $abc=1$. That is one fewer degree of freedom, and the constraint often matches the tool you want (AM-GM likes fixed product, Cauchy-Schwarz likes fixed sum).
+
+**2. Ratio substitution.** For two variables set $t=\frac xy$. Everything depends on $t$ alone:
+
+$$
+\frac{x^2+y^2}{xy}
+=\frac{t^2y^2+y^2}{ty^2}
+=t+\frac1t\ge2.
+$$
+
+Equality at $t=1$, so $x=y$. This is the same AM-GM fact as before, found mechanically.
+
+**3. Homogenise a constrained problem.** If you are given $x+y=1$ and a target such as $x^2+y^2\ge\frac12$, the constant $\frac12$ has degree $0$ while $x^2+y^2$ has degree $2$. Use the constraint to disguise the constant as degree $2$:
+
+$$
+\frac12=\frac{(x+y)^2}{2}.
+$$
+
+The target becomes $x^2+y^2\ge\frac{(x+y)^2}{2}$, which is homogeneous and equivalent to $(x-y)^2\ge0$. Now the problem is a standard square argument.
+
+### A bonus use: a degree check catches mistakes
+
+If you are proving $\frac{a^2}{b+c}\ge\frac{a+b+c}{2}$, the left side has degree $1$ and the right side has degree $1$. They match, so the statement is plausible. If your proof ever produces a step whose two sides have different degrees (and no constraint justifies it), there is an error. This is a fast sanity check you can do in your head.
+
+### Connection to what you already know
+
+Look back at A08 Problem F:
+
+$$
+\frac{a^2}{b+c}+\frac{b^2}{c+a}+\frac{c^2}{a+b}\ge\frac{a+b+c}2.
+$$
+
+Every term has degree $1$, so this inequality is homogeneous. That is exactly why the equality case $a=b=c$ is a whole family (any common value), not one special number. A homogeneous inequality always has equality along a ray, not at a single point.
+
+### Rule of thumb
+
+1. Compute the degree of every part. If they all agree, the statement is homogeneous.
+2. If they agree, you may normalise: choose $x+y+z=1$ or $xyz=1$, whichever matches your tool.
+3. If they do not agree, look for a constraint that lets you make them agree (homogenise), or do not normalise at all.
+4. Write down the new condition you assumed, and remember it came from scaling.
+
+### Next step
+
+Do Problem A (degrees) and Problem B (scaling factors) in [[NMaO-Lesson-09-Homogeneity-Substitutions]]. They are the quickest way to make the degree test automatic.
